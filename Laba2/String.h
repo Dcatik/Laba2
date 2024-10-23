@@ -1,20 +1,47 @@
 #pragma once
+#include <vector>
 #include <string>
+#include <stdexcept>
+#include <iostream>
+#include <map>
+#include "IStringOperation.h"
 #include "IReader.h"
 #include "IWriter.h"
 
 class String {
 private:
-	char* date;
-	int str_lenght;
-public:
-	String();
-	String(IReader reader, std::string filename);
-	String(std::string string);
-	template<typename str>
-	void operator=(str other);
-	~String();
+    std::vector<char> data;
+    int length;
 
-	void Print();
-	int Find(String str, String aim);
+    void calculateLength();
+    std::string toLower(const std::string& str) const;
+public:
+    String();
+    String(const std::string& str);
+    String(const std::vector<char>& vec);
+    String(const char* str);
+
+    void printContent() const;
+    int findSubstring(const String& substring) const;
+    std::map<String, int> wordDistribution();
+    void showWordDistributionAlphabetic();
+    void showWordDistributionNext();
+    void showWordDistributionQuantitative();
+    int countWords() const;
+
+    String& operator=(const String& other);
+    String operator+(const String& other) const;
+    String operator*(int times) const;
+    bool operator==(const String& other) const;
+    bool operator<(const String& other) const;
+    bool operator>(const String& other) const;
+
+    int size() const;
+
+    friend std::ostream& operator<<(std::ostream& os, const String& str);
+
+    void saveToFile(IWriter<String>& writer, const std::string& filename) const;
+    String readFromFile(IReader<String>& reader, const std::string& filename) const;
+
+    ~String() = default;
 };
