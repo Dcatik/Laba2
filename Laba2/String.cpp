@@ -16,14 +16,14 @@ void String::calculateLength() {
     length = data.size();
 }
 
-void String::printContent() const {
+void String::printContent() {
     for (int i = 0; i < data.size(); i++) {
         std::cout << data[i];
     }
     std::cout << std::endl;
 }
 
-int String::findSubstring(const String& substring) const {
+int String::findSubstring(const String& substring) {
     int strLen = data.size();
     int subLen = substring.data.size();
 
@@ -41,7 +41,7 @@ int String::findSubstring(const String& substring) const {
     return -1;
 }
 
-std::string String::toLower(const std::string& str) const {
+std::string String::toLower(const std::string& str) {
     std::string lowerStr;
     for (int i = 0; i < str.size(); i++) {
         lowerStr += (str[i] >= 'A' && str[i] <= 'Z') ? str[i] + 32 : str[i];
@@ -157,7 +157,7 @@ void String::showWordDistributionNext() {
     }
 }
 
-int String::countWords() const {
+int String::countWords() {
     int count = 0;
     std::string word;
     bool inWord = false;
@@ -189,7 +189,7 @@ String& String::operator=(const String& other) {
     return *this;
 }
 
-String String::operator+(const String& other) const {
+String String::operator+(const String& other) {
     String result;
     result.data = data;
     for (int i = 0; i < other.data.size(); i++) {
@@ -199,7 +199,7 @@ String String::operator+(const String& other) const {
     return result;
 }
 
-String String::operator*(int times) const {
+String String::operator*(int times) {
     String result;
     for (int i = 0; i < times; i++) {
         result = result + *this;
@@ -207,11 +207,11 @@ String String::operator*(int times) const {
     return result;
 }
 
-bool String::operator==(const String& other) const {
+bool String::operator==(const String& other) {
     return data == other.data;
 }
 
-int String::size() const {
+int String::size() {
     return length;
 }
 
@@ -230,10 +230,10 @@ bool String::operator>(const String& other) const {
     return data > other.data;
 }
 
-void String::saveToFile(IWriter<String>& writer, const std::string& filename) const {
+void String::saveToFile(IWriter<String>& writer, const std::string& filename) {
     writer.write(filename, *this);
 }
 
-String String::readFromFile(IReader<String>& reader, const std::string& filename) const {
+String String::readFromFile(IReader<String>& reader, const std::string& filename) {
     return reader.read(filename);
 }

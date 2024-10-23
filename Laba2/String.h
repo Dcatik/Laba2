@@ -14,34 +14,34 @@ private:
     int length;
 
     void calculateLength();
-    std::string toLower(const std::string& str) const;
+    std::string toLower(const std::string& str);
 public:
     String();
     String(const std::string& str);
     String(const std::vector<char>& vec);
     String(const char* str);
 
-    void printContent() const;
-    int findSubstring(const String& substring) const;
+    void printContent();
+    int findSubstring(const String& substring);
     std::map<String, int> wordDistribution();
     void showWordDistributionAlphabetic();
     void showWordDistributionNext();
     void showWordDistributionQuantitative();
-    int countWords() const;
+    int countWords();
 
     String& operator=(const String& other);
-    String operator+(const String& other) const;
-    String operator*(int times) const;
-    bool operator==(const String& other) const;
+    String operator+(const String& other);
+    String operator*(int times);
+    bool operator==(const String& other);
     bool operator<(const String& other) const;
     bool operator>(const String& other) const;
 
-    int size() const;
+    int size();
 
     friend std::ostream& operator<<(std::ostream& os, const String& str);
 
-    void saveToFile(IWriter<String>& writer, const std::string& filename) const;
-    String readFromFile(IReader<String>& reader, const std::string& filename) const;
+    void saveToFile(IWriter<String>& writer, const std::string& filename);
+    String readFromFile(IReader<String>& reader, const std::string& filename);
 
     ~String() = default;
 };
